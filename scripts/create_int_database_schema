@@ -1,0 +1,31 @@
+/*
+=========================================================================================================
+Create Database & Schemas
+=========================================================================================================
+Script Purpose:
+                This script creates a new database named 'DataWarehouse'. The script also sets up the 3 medallion layer
+                as schemas namely bronze, silver, gold.
+
+*/
+
+----- Go to Master database ----
+USE master
+
+
+----- Create datawarehouse database -----------
+
+CREATE DATABASE first_datawarehouse
+
+---- Navigate to the database -----
+
+USE first_datawarehouse
+
+
+
+------Create Schema --------------------------
+
+CREATE SCHEMA bronze;
+GO
+CREATE SCHEMA silver
+GO
+CREATE SCHEMA gold
