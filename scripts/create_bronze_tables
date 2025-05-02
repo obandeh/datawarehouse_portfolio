@@ -1,0 +1,41 @@
+IF OBJECT_ID ('bronze.crm_cust_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_cust_info;
+
+CREATE TABLE bronze.crm_cust_info (
+    cst_id INT IDENTITY(1,1) PRIMARY KEY,
+    cst_key UNIQUEIDENTIFIER DEFAULT NEWID(),
+    cst_firstname NVARCHAR(50) NOT NULL,
+    cst_lastname NVARCHAR(50) NOT NULL,
+    cst_marital_status CHAR(1) NULL, -- Could be 'S', 'M', 'D', 'W' for Single, Married, Divorced, Widowed
+    cst_gndr CHAR(1) NULL, -- Could be 'M', 'F', 'O' for Male, Female, Other
+    cst_create_date DATETIME DEFAULT GETDATE()
+);
+
+IF OBJECT_ID ('bronze.crm_prd_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_prd_info;
+
+CREATE TABLE bronze.crm_prd_info (
+    prd_id INT IDENTITY(1,1) PRIMARY KEY,
+    prd_key NVARCHAR(50),
+    prd_nm NVARCHAR(50) NOT NULL,
+    prd_cost INT NOT NULL,
+    prd_line NVARCHAR(50) NULL,
+    prd_start_dt DATE NOT NULL,
+    prd_end_dt DATE NULL
+);
+
+
+IF OBJECT_ID ('bronze.crm_sales_details', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_sales_details;
+
+CREATE TABLE bronze.crm_sales_details (
+    sls_ord_num INT IDENTITY(1,1) PRIMARY KEY,
+    sls_prd_key NVARCHAR(50) NOT NULL,
+    sls_cust_id INT NOT NULL,
+    sls_order_dt DATETIME NOT NULL,
+    sls_ship_dt DATETIME NULL,
+    sls_due_dt DATETIME NULL,
+    sls_sales INT NOT NULL,
+    sls_quantity INT NOT NULL DEFAULT 1,
+    sls_price INT NOT NULL
+	);
